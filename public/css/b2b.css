@@ -1,0 +1,538 @@
+/* ===== B2B PAGE - PAGE-SPECIFIC STYLES ===== */
+
+/* ===== FILTER BAR ===== */
+
+.filterbtn {
+    position: relative;
+    border: 1px solid rgba(94, 102, 125, 0.7);
+    border-radius: 10px;
+    background: none;
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.filtertop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.filterLeft {
+    display: inline-flex;
+    width: 53%;
+    margin-left: -0.5%;
+}
+
+.filterRight {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.filterLeft .btn-group {
+    width: 32%;
+    margin: 0 1.5%;
+}
+
+.filterRight button.btn {
+    min-width: inherit;
+    padding: 10px 20px;
+    margin: 0 17px 10px 0;
+    font-weight: 500;
+    font-size: 14px;
+    color: #F1DFDF;
+}
+
+.filterbtn.dropdown-toggle::after {
+    border: none;
+    content: '';
+    background: url(../img/downwh.svg) 0 0 no-repeat;
+    width: 15px;
+    height: 9px;
+    position: absolute;
+    right: 15px;
+    top: 17px;
+}
+
+.filterLeft .dropdown-menu {
+    width: 100%;
+}
+
+.filtertop:last-child {
+    border-top: 0.5px solid #3E526C;
+    padding: 30px 0 0;
+    margin: 30px 0 0;
+}
+
+.filtertop:last-child .filterLeft {
+    width: 78%;
+}
+
+/* ===== COMPANY CARDS ===== */
+
+/*
+ * KEY FIX: col-md-6.col-xl-3 must be d-flex (added in blade via Bootstrap class)
+ * so .creators stretches to full column height.
+ */
+
+.creators {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* Invisible by default — JS animates them in */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.creators:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 32px rgba(1, 157, 234, 0.38);
+}
+
+/* Background image — fixed height, never shrinks */
+.creatorImg {
+    height: 160px;
+    min-height: 160px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    background: #0a1f3a;
+    border-radius: 15px 15px 0 0;
+}
+
+.creatorImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.creators:hover .creatorImg img {
+    transform: scale(1.05);
+}
+
+/* Gradient overlay */
+.creatorImg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(5, 13, 29, 0.65) 100%);
+    pointer-events: none;
+}
+
+/* Fallback if no background image */
+.creatorImg-fallback {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a1f3a 0%, #01335a 50%, #019DEA22 100%);
+}
+
+/* Profile logo — overlapping bg */
+.creatorIcon {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin: -35px auto 0;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.creatorIcon a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.creatorIcon img {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    border: 4px solid #050D1D;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.creators:hover .creatorIcon img {
+    transform: scale(1.08);
+}
+
+/* Check badge */
+.creatorcheck {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    background: #019DEA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #050D1D;
+}
+
+.creatorcheck img {
+    width: 13px;
+    height: 13px;
+    display: block;
+}
+
+/* Info section — flex-grow fills remaining card height */
+.creatorsText {
+    flex: 1; /* ← KEY: takes all remaining height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px 16px 24px;
+    border-radius: 0 0 15px 15px;
+    background: rgba(10, 31, 58, 0.6);
+    backdrop-filter: blur(8px);
+    min-height: 170px;
+}
+
+.creatorsText h2 {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+}
+
+.creatorsText h2 a {
+    transition: color 0.3s ease;
+}
+
+.creators:hover .creatorsText h2 a {
+    color: #019DEA !important;
+}
+
+.creatorsText h3 {
+    font-weight: 400;
+    font-size: 12px;
+    margin: 0 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Description — always 3 lines max */
+.creatorsText p {
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    /* Reserve exactly 3 lines height so cards don't shift */
+    min-height: calc(13px * 1.6 * 3);
+    flex-shrink: 0;
+}
+
+/* Stats badge (products count) */
+.creator-stats {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto; /* pushes to bottom */
+    padding-top: 14px;
+    flex-wrap: wrap;
+}
+
+.creator-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #B1BBD4;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 4px 12px;
+    transition: all 0.3s ease;
+}
+
+.creator-stat i {
+    font-size: 11px;
+    color: #019DEA;
+}
+
+.creators:hover .creator-stat {
+    background: rgba(1, 157, 234, 0.1);
+    border-color: rgba(1, 157, 234, 0.3);
+}
+
+/* ===== PAGINATION ===== */
+
+.pagination-links .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pagination .page-item .page-link {
+    color: #ffffff;
+    background-color: rgba(10, 31, 58, 0.7);
+    border: 1px solid rgba(1, 157, 234, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #019DEA;
+    border-color: #019DEA;
+    color: #ffffff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #019DEA;
+    border-color: #019DEA;
+    color: #fff;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet (992px) */
+@media (max-width: 991px) {
+    .filtertop {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+
+
+
+    .filterLeft {
+        width: 100%;
+        margin-left: 0;
+        justify-content: space-between;
+    }
+
+    .filterRight {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .filterLeft .btn-group {
+        margin: 0;
+    }
+
+    .filtertop:last-child .filterLeft {
+        width: 100%;
+    }
+
+    .filterRight button.btn:last-child {
+        margin-right: 0;
+    }
+
+    .creatorImg {
+        height: 150px;
+        min-height: 150px;
+    }
+}
+
+/* Mobile (767px) */
+@media (max-width: 767px) {
+    .creatorImg {
+        height: 200px;
+        min-height: 200px;
+    }
+
+    .creatorIcon img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .creatorIcon {
+        width: 80px;
+        height: 80px;
+        margin: -40px auto 0;
+    }
+
+    .creatorsText {
+        padding: 50px 20px 24px;
+        min-height: 160px;
+    }
+
+    .creatorsText h2 {
+        font-size: 16px;
+    }
+
+    .creatorsText h3 {
+        font-size: 13px;
+    }
+
+    .creatorsText p {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+        min-height: calc(13px * 1.6 * 2);
+    }
+
+    .creator-stats {
+        gap: 8px;
+        padding-top: 12px;
+    }
+}
+
+/* Mobile small (575px) */
+@media (max-width: 575px) {
+    .creatorImg {
+        height: 180px;
+        min-height: 180px;
+    }
+    
+    .creatorIcon {
+        width: 72px;
+        height: 72px;
+        margin: -36px auto 0;
+    }
+
+    .creatorIcon img {
+        width: 72px;
+        height: 72px;
+        border-radius: 10px;
+        border: 3px solid #050D1D;
+    }
+
+    .creatorsText {
+        padding: 44px 16px 20px;
+        min-height: 150px;
+    }
+
+    .creatorsText h2 {
+        font-size: 15px;
+    }
+
+    .creators:hover {
+        transform: none !important;
+    }
+
+    .creators:active {
+        transform: scale(0.98) !important;
+    }
+
+}
+
+/* Mobile - Filter Modal (575px) */
+@media (max-width: 575px) {
+    .filterbtnsm {
+        width: 100%;
+    }
+
+    .creatorcheck img {
+    width: 13px;
+    height: 13px;
+    display: block;
+    }
+
+    #filterModal .modal-dialog {
+        margin: 0 auto;
+        height: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #filterModal .modal-content {
+        background: #050D1D;
+        border-radius: 20px;
+        height: 100%;
+        align-items: center;
+        align-content: center;
+    }
+
+    #filterModal .modal-body {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        padding-top: 50px;
+        background: #050D1D;
+    }
+
+    #filterModal button.btn-close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 1;
+        opacity: 1;
+    }
+
+    #filterModal .filterLeft {
+        flex-wrap: wrap;
+    }
+
+    #filterModal .filterLeft .btn-group {
+        width: 100%;
+        margin: 0 0 20px;
+    }
+
+    #filterModal .filterLeft .btn-group:last-child {
+        margin: 0;
+    }
+
+    #filterModal .filtertop:last-child {
+        flex-direction: inherit;
+        flex-wrap: wrap;
+    }
+
+    #filterModal .filterRight {
+        flex-wrap: wrap;
+    }
+
+    #filterModal .filterRight button.btn {
+        margin: 0 10px 10px 0;
+    }
+
+    #filterModal .filtertop:last-child .filterLeft {
+        margin-bottom: 20px;
+    }
+
+    #filterModal .filtertop:last-child button.btn {
+        width: 100%;
+    }
+
+    .creatorsText p {
+        font-size: 12px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .creators {
+        transition: none !important;
+    }
+
+    .creators:hover {
+        transform: none !important;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .creators:hover {
+        transform: none !important;
+    }
+
+    .creators:active {
+        transform: scale(0.98) !important;
+    }
+}
+
+/* ===== END B2B PAGE STYLES ===== *

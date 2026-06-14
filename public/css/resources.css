@@ -1,0 +1,217 @@
+/* ===== RESOURCES PAGE - BEST PRACTICES EXCHANGE ===== */
+
+.resources-page {
+    padding: 20px 0 80px;
+}
+
+.resources-subtitle {
+    color: #B1BBD4;
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+/* ===== LAYOUT: Map left + Grid right ===== */
+
+.resources-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+    margin-top: 40px;
+}
+
+/* ===== AFRICA MAP WRAPPER ===== */
+
+.africa-map-wrapper {
+    position: sticky;
+    top: 100px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(1, 15, 40, 0.5);
+    border: 1px solid rgba(1, 157, 234, 0.18);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== AFRICA SVG (D3 renders into this) ===== */
+
+.africa-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* D3-generated country paths — base state */
+.africa-svg .country-path {
+    transition: fill 0.22s ease, stroke 0.22s ease, filter 0.22s ease;
+}
+
+/* Active countries get pointer cursor (set inline by JS) */
+/* Non-active countries are dimmer and not clickable */
+
+/* ===== MAP LOADING SPINNER ===== */
+
+.map-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(1, 157, 234, 0.7);
+    font-size: 13px;
+    min-height: 280px;
+    pointer-events: none;
+}
+
+.map-loading svg {
+    flex-shrink: 0;
+}
+
+/* Spinner animation */
+@keyframes mapSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== MAP TOOLTIP ===== */
+
+.africa-map-wrapper {
+    position: relative; /* needed for tooltip absolute positioning */
+}
+
+.map-tooltip {
+    position: absolute;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: rgba(5, 13, 29, 0.95);
+    border: 1px solid rgba(1, 157, 234, 0.4);
+    border-radius: 8px;
+    padding: 7px 14px;
+    pointer-events: none;
+    z-index: 100;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+}
+
+.map-tooltip.visible {
+    display: flex;
+}
+
+.map-tooltip img {
+    width: 28px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.map-tooltip span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+}
+
+/* ===== COUNTRIES GRID ===== */
+
+.countries-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.country-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(10, 31, 58, 0.5);
+    border: 1px solid rgba(1, 157, 234, 0.15);
+    border-radius: 12px;
+    padding: 12px 18px;
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.country-card:hover,
+.country-card.highlighted {
+    background: rgba(1, 157, 234, 0.12);
+    border-color: rgba(1, 157, 234, 0.5);
+    transform: translateX(6px);
+}
+
+.country-flag {
+    width: 42px;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.country-flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.country-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.country-arrow {
+    font-size: 11px;
+    color: #019DEA;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.country-card:hover .country-arrow,
+.country-card.highlighted .country-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1199px) {
+    .resources-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 991px) {
+    .resources-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .africa-map-wrapper {
+        position: relative;
+        top: 0;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 575px) {
+    .resources-layout {
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .country-card {
+        padding: 10px 14px;
+    }
+
+    .country-name {
+        font-size: 13px;
+    }
+}
+
+/* ===== END RESOURCES PAGE ===== */
